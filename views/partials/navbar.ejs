@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+
+        <% if (typeof user !== 'undefined' && user) { %>
+          <!-- Only visible when logged in -->
+          <li class="nav-item">
+            <a class="nav-link" href="/project/create">Create Project</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/project/find">Find Project</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <%= user.name || "Account" %>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/">Profile</a></li>
+              <li><a class="dropdown-item" href="/project/show">Projects</a></li>
+              <li><a class="dropdown-item" href="/project/applications">Applications</a></li>
+              <li><a class="dropdown-item" href="/project/history">History</a></li>
+              <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+            </ul>
+          </li>
+        <% } else { %>
+          <!-- Only visible when not logged in -->
+          <li class="nav-item">
+            <a class="nav-link" href="/user/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/user/signup">Signup</a>
+          </li>
+        <% } %>
+
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('./partials/head') %>
+  <title>Project & Application History</title>
+  <style>
+    .history-split {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .history-section {
+      flex: 1;
+      min-width: 45%;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .history-section h4 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      margin-bottom: 15px;
+    }
+
+    .badge-label {
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <%- include('./partials/navbar') %>
+
+  <div class="container mt-5">
+    <h2 class="mb-4 text-center">History</h2>
+
+    <div class="history-split">
+      
+      <!-- Left: Your Project History -->
+      <div class="history-section">
+        <h4>Your Project History</h4>
+        <% if (createdHistory.length === 0) { %>
+          <p class="text-center text-muted">No project history available.</p>
+        <% } else { %>
+          <% createdHistory.forEach(project => { %>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title"><%= project.title %></h5>
+                <p class="card-text"><%= project.desc %></p>
+                <p class="card-text">
+                  <span class="badge bg-success badge-label">Approved User Email:</span>
+                  <%= project.approved_user?.email || 'N/A' %>
+                </p>
+                <p class="text-muted">Domain: <%= project.domain %></p>
+              </div>
+            </div>
+          <% }) %>
+        <% } %>
+      </div>
+
+      <!-- Right: Your Application History -->
+      <div class="history-section">
+        <h4>Your Application History</h4>
+        <% if (appliedHistory.length === 0) { %>
+          <p class="text-center text-muted">No application history available.</p>
+        <% } else { %>
+          <% appliedHistory.forEach(project => { %>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title"><%= project.title %></h5>
+                <p class="card-text"><%= project.desc %></p>
+                <p class="card-text">
+                  <span class="badge bg-primary badge-label">Project Owner Email:</span>
+                  <%= project.createdBy?.email || 'N/A' %>
+                </p>
+                <p class="text-muted">Domain: <%= project.domain %></p>
+              </div>
+            </div>
+          <% }) %>
+        <% } %>
+      </div>
+
+    </div>
+  </div>
+
+  <%- include('./partials/scripts') %>
+</body>
+</html>

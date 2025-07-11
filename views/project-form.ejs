@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Create</title>
+</head>
+<body>
+<%- include('./partials/navbar') %>
+    <div class="container">
+    <h2 class="mb-4 text-center">Create a New Project</h2>
+    <form action="/project/create" method="POST">
+      <div class="mb-3">
+        <label for="title" class="form-label">Title:</label>
+        <input type="text" class="form-control" id="title" name="title" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label">Description:</label>
+        <textarea class="form-control" id="description" name="desc" rows="4" required></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="skills" class="form-label">Skills You Want:</label>
+        <input type="text" class="form-control" id="skills" name="skills" placeholder="e.g. React, Node.js, Figma" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="domain" class="form-label">Domain:</label>
+        <select class="form-select" id="domain" name="domain" required>
+          <option value="" disabled selected>Select Domain</option>
+          <option value="Web Development">Web Development</option>
+          <option value="App Development">App Development</option>
+          <option value="AI/ML">AI / Machine Learning</option>
+          <option value="Blockchain">Blockchain</option>
+          <option value="Cybersecurity">Cybersecurity</option>
+          <option value="Game Development">Game Development</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-3 w-100">Submit Project</button>
+    </form>
+  </div>
+
+<%- include('./partials/scripts') %>    
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('./partials/head') %>
+  <title>My Projects</title>
+</head>
+<body>
+<%- include('./partials/navbar') %>
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">My Projects</h2>
+
+  <div class="row g-4">
+    <% projects.forEach(project => { %>
+      <div class="col-md-6 col-lg-4">
+        <%- include('./partials/projectCard2', { project}) %>
+
+      </div>
+    <% }) %>
+  </div>
+</div>
+
+<%- include('./partials/scripts') %>
+</body>
+</html>

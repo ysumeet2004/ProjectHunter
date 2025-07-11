@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('./partials/head') %>
+  <title>Applicants - <%= project_.title %></title>
+</head>
+<body>
+<%- include('./partials/navbar') %>
+
+<div class="container mt-5">
+  <h2>Applicants for "<%= project_.title %>"</h2>
+
+  <% if (project_.applicants.length === 0) { %>
+    <p class="text-muted">No applicants yet.</p>
+  <% } else { %>
+    <div class="list-group">
+      <% project_.applicants.forEach(app => { %>
+  <div class="list-group-item d-flex justify-content-between align-items-center">
+    <div>
+      <h5 class="mb-1"><%= app.user.name %></h5>
+      <p class="mb-0 text-muted"><%= app.user.email %></p>
+    </div>
+    <form action="/project/<%= project_._id %>/applicants/<%= app.user._id %>/approve" method="POST">
+      <button type="submit" class="btn btn-success btn-sm">Approve</button>
+    </form>
+  </div>
+<% }) %>
+
+    </div>
+  <% } %>
+</div>
+
+<%- include('./partials/scripts') %>
+</body>
+</html>
